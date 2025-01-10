@@ -107,7 +107,7 @@ char	*create_buffer(int fd, char *buffer)
 			if (!tmp)
 				return (NULL);
 		}
-		buffer = (char *)gnl_ft_calloc(gnl_ft_strlen(tmp) + (BUFFER_SIZE) + 1, 1);
+		buffer = (char *)gnl_ft_calloc(gnl_ft_strlen(tmp) + BUFFER_SIZE + 1, 1);
 		if (!buffer)
 			return (null_free((void *)&tmp, NULL, 1, 0));
 		readed_bytes = read(fd, &buffer[gnl_ft_strncpy(buffer, tmp,
