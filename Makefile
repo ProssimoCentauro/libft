@@ -1,45 +1,39 @@
 #Declarations
 NAME = libft.a
+HEADERS_DIR := header_files 
+LIBFT_DIR := source_files/libft_srcs
+
+
+
+#Main sourcers
+LIBFT_SRCS := $(wildcard $(LIBFT_DIR)/*.c)
+
+#Variables to convert SRCS and BONUS *.c in *.o (object files)
+LIBFT_OBJS = $(LIBFT_SRCS:.c=.o)
+
+
+
+#Flags
 CC = cc
 AR = ar rcs
 RM = rm -f
 CFLAGS = -Wall -Werror -Wextra
-
-#Main sourcers
-SRCS = ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c \
-    ft_strlen.c ft_memset.c ft_bzero.c ft_memcpy.c ft_memmove.c \
-    ft_strlcpy.c ft_strlcat.c ft_toupper.c ft_tolower.c ft_strchr.c \
-    ft_strrchr.c ft_strncmp.c ft_memchr.c ft_memcmp.c ft_strnstr.c \
-    ft_atoi.c ft_calloc.c ft_strdup.c ft_substr.c ft_strjoin.c \
-    ft_strtrim.c ft_split.c ft_itoa.c ft_strmapi.c ft_striteri.c \
-    ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c
-
-#Bonus sourcers
-BONUS = ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c \
-	ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c
-
-#Variables to convert SRCS and BONUS *.c in *.o (object files)
-OBJS = $(SRCS:.c=.o)
-BONUS_OBJS = $(BONUS:.c=.o)
+IFLAG = -I $(HEADERS_DIR)
 
 #All files must exist
-$(NAME): $(OBJS)
+$(NAME): $(LIBFT_OBJS)
 	$(AR) $@ $^
-
-#Rule that compile also the BONUS files
-bonus: $(BONUS_OBJS)
-	$(AR) $(NAME) $^
 
 #Every *.c must be compiled in *.o files
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) $(IFLAG) -c $< -o $@
 
 #Main target (Executed if the user execute make)
 all: $(NAME)
 
 #Rule that delete all the *.o files
 clean:
-	$(RM) $(OBJS) $(BONUS_OBJS)
+	$(RM) $(LIBFT_OBJS)
 
 #Rule that delete all the *.o files and also $(NAME)
 fclean: clean
