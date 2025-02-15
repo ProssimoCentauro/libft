@@ -6,7 +6,7 @@
 /*   By: rtodaro <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/23 13:47:17 by rtodaro           #+#    #+#             */
-/*   Updated: 2024/12/23 15:04:47 by rtodaro          ###   ########.fr       */
+/*   Updated: 2025/02/15 17:12:09 by rtodaro          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ char	*create_buffer(int fd, char *buffer)
 			return (null_free((void *)&tmp, NULL, 1, 0));
 		readed_bytes = read(fd, &buffer[gnl_ft_strncpy(buffer, tmp,
 					gnl_ft_strlen(tmp))], BUFFER_SIZE);
-		if (readed_bytes == 0)
+		if (readed_bytes <= 0)
 		{
 			free(buffer);
 			return (tmp);
